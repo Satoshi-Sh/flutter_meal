@@ -30,7 +30,7 @@ class CategoriesScreen extends StatelessWidget {
           // availableCategories.map((category) => CategoryGridItem(category: category))
           for (final category in availableCategories)
             CategoryGridItem(
-              onSelectCategory: _selectCategory,
+              onSelectCategory: (){_selectCategory(context)},
               category: category,
             ),
         ],
