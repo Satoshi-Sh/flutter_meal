@@ -15,7 +15,12 @@ class MealScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Text('Hello for now..'),
+      body: Image.network(
+        meal.imageUrl,
+        height: 300,
+        width: double.infinity,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
