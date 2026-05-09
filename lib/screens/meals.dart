@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_meal/models/meal.dart';
 import 'package:flutter_meal/widgets/meal_item.dart';
 import 'package:flutter_meal/screens/meal.dart';
 
-class MealsScreen extends StatelessWidget {
+class MealsScreen extends ConsumerWidget {
   const MealsScreen({
     super.key,
     this.title,
@@ -15,7 +17,6 @@ class MealsScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (ctx) => MealScreen(
           meal: meal,
-          onToggleFavorite: onToggleFavorite,
         ),
       ),
     ); // Navigator.push(context, route)
@@ -25,7 +26,7 @@ class MealsScreen extends StatelessWidget {
   final List<Meal> meals;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final Widget listContent = meals.isEmpty
         ? Center(
             child: Column(
