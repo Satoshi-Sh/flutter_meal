@@ -14,6 +14,9 @@ class MealScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
+
+    final isFavoirte = favoriteMeals.contains(meal);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -22,7 +25,7 @@ class MealScreen extends ConsumerWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.star),
+            icon: Icon(isFavoirte ? Icons.star : Icons.star_border),
             onPressed: () {
               final wasAdded = ref
                   .read(favoriteMealsProvider.notifier)
