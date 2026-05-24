@@ -16,7 +16,7 @@ class MealScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final favoriteMeals = ref.watch(favoriteMealsProvider);
 
-    final isFavoirte = favoriteMeals.contains(meal);
+    final isFavorite = favoriteMeals.contains(meal);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -25,7 +25,16 @@ class MealScreen extends ConsumerWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(isFavoirte ? Icons.star : Icons.star_border),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: animation,
+                  child: child,
+                );
+              },
+              child: Icon(isFavorite ? Icons.star : Icons.star_border),
+            ),
             onPressed: () {
               final wasAdded = ref
                   .read(favoriteMealsProvider.notifier)
