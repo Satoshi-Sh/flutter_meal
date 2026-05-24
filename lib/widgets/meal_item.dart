@@ -31,29 +31,32 @@ class MealItem extends StatelessWidget {
         },
         child: Stack(
           children: [
-            Image.network(
-              meal.imageUrl,
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              cacheWidth: 300,
-              loadingBuilder: (context, child, progress) {
-                if (progress == null) return child;
-                return SizedBox(
-                  height: 200,
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: 200,
-                  width: double.infinity,
-                  color: Colors.grey[300],
-                  child: Center(
-                    child: Icon(Icons.broken_image, size: 50),
-                  ),
-                );
-              },
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                meal.imageUrl,
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                cacheWidth: 300,
+                loadingBuilder: (context, child, progress) {
+                  if (progress == null) return child;
+                  return SizedBox(
+                    height: 200,
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    height: 200,
+                    width: double.infinity,
+                    color: Colors.grey[300],
+                    child: Center(
+                      child: Icon(Icons.broken_image, size: 50),
+                    ),
+                  );
+                },
+              ),
             ),
             Positioned(
               bottom: 0,
